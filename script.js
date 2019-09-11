@@ -9,22 +9,23 @@ var todoList = {
     // 'this' refers to a property inside current object (todoList)
     // this.todos gets todos property from todoList (removed because no need to print object info to console)
     if (this.todos.length === 0) {
-      console.log('Your Todo list is empty!');
+      console.log("Your Todo list is empty!");
     } else {
-      console.log('My Todos:');
+      console.log("My Todos:");
       for (var i = 0; i < this.todos.length; i++) {
         if (this.todos[i].completed === true) {
-          console.log('(x)',this.todos[i].todoTextDescription);
+          console.log("(x)", this.todos[i].todoTextDescription);
         } else {
-          console.log('( )', this.todos[i].todoTextDescription);
+          console.log("( )", this.todos[i].todoTextDescription);
+        }
       }
     }
-  }
-},
-  addTodo: function(todoText) { // addTodo('hi')
+  },
+  addTodo: function(todoText) {
+    // addTodo('hi')
     this.todos.push({
-        todoTextDescription: todoText, // todoText property is function paramter todoText
-        completed: false,
+      todoTextDescription: todoText, // todoText property is function paramter todoText
+      completed: false
     });
     this.displayTodos();
   },
@@ -57,7 +58,7 @@ var todoList = {
       for (var i = 0; i < totalTodos; i++) {
         this.todos[i].completed = false;
       }
-    // Case 2: Otherwise, make everything true
+      // Case 2: Otherwise, make everything true
     } else {
       for (var i = 0; i < totalTodos; i++) {
         this.todos[i].completed = true;
@@ -74,5 +75,23 @@ var handlers = {
   },
   toggleAll: function() {
     todoList.toggleAll();
+  },
+  addTodo: function() {
+    var addTodoTextInput = document.getElementById("addTodoTextInput");
+    todoList.addTodo(addTodoTextInput.value);
+    // Clears input so that next value can be added
+    addTodoTextInput.value = "";
+  },
+  changeTodo: function() {
+    var changeTodoPositionInput = document.getElementById("changeTodoTextPositionInput");
+    var changeTodoTextInput = document.getElementById("changeTodoTextInput");
+    todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+    changeTodoPositionInput = '';
+    changeTodoTextInput = '';
+  },
+  deleteTodo: function() {
+    var deleteTodoPositionInput = document.getElementById("deleteTodoPositionInput");
+    todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
+    deleteTodoPositionInput.value = '';
   }
 };
