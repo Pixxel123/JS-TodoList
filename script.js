@@ -14,9 +14,9 @@ var todoList = {
       console.log("My Todos:");
       for (var i = 0; i < this.todos.length; i++) {
         if (this.todos[i].completed === true) {
-          console.log("(x)", this.todos[i].todoTextDescription);
+          console.log("(x)", this.todos[i].todoText);
         } else {
-          console.log("( )", this.todos[i].todoTextDescription);
+          console.log("( )", this.todos[i].todoText);
         }
       }
     }
@@ -24,14 +24,14 @@ var todoList = {
   addTodo: function(todoText) {
     // addTodo('hi')
     this.todos.push({
-      todoTextDescription: todoText, // todoText property is function paramter todoText
+      todoText: todoText, // todoText property is function paramter todoText
       completed: false
     });
     this.displayTodos();
   },
   changeTodo: function(position, todoText) {
     // this.todos[position] = newValue;
-    this.todos[position].todoTextDescription = todoText;
+    this.todos[position].todoText = todoText;
     this.displayTodos();
   },
   deleteTodo: function(position) {
@@ -107,5 +107,25 @@ var handlers = {
   },
   toggleAll: function() {
     todoList.toggleAll();
+  }
+};
+
+var view = {
+  displayTodos: function () {
+    var todosUl = document.querySelector("ul");
+    todosUl.innerHTML = ''
+    for (var i = 0; i < todoList.todos.length; i++) {
+      var todoLi = document.createElement("li");
+      // (x) todoText
+      // var todoTextWithCompletion = '';
+      // if (todo.completed === true)
+        // (x) todoText
+      // else
+        // () todoText
+      // todoLi.textContent = todoTextWithCompletion;
+      
+      todoLi.textContent = todoList.todos[i].todoText;
+      todosUl.appendChild(todoLi);
+    }
   }
 };
